@@ -8,7 +8,8 @@ $(document).on("ready", function() {
     dataType: "json",
     success: onSuccess
   });   // ajax
-});  // doc on ready
+});  // doc on read
+
 
 function onSuccess(responseData) {
   var coord = [{lat: 37.78, lng: -122.44}]; // creates array starting with SF coord
@@ -16,8 +17,14 @@ function onSuccess(responseData) {
   var output = responseData.features;
 
   output.forEach(function(item, index) {
+    var timeOutput = output[index].properties.time;
+    var today = Date.now();
+    var hoursAgo = Math.floor((today-timeOutput)/(1000*60*60));
     var newOutput = output[index].properties.title;
-    $("#info").append('<p>' + newOutput + '</p>');
+    // template string attempt
+    $("#info").append(`<p> ${newOutput} / ${hoursAgo} hours ago </p>`);
+    // $("#info").append('<p>' + newOutput + ' / ' + hoursAgo + ' hours ago </p>');
+
     var findLatLng = output[index].geometry.coordinates;
     // console.log(findLatLng); // to test
 
@@ -32,6 +39,7 @@ function onSuccess(responseData) {
       // console.log(coord); // test
     })
     google.maps.event.addDomListener(window, 'load', initMap(coord));
+
   }
 
 var sfLatLng = {lat: 37.78, lng: -122.44};
@@ -48,4 +56,4 @@ function initMap(coord) {
       map: map,
 		});
 	}
-}    
+}
