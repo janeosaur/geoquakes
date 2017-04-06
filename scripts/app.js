@@ -8,23 +8,26 @@ $(document).on("ready", function() {
     dataType: "json",
     success: onSuccess
   });   // ajax
-
-  var sfLatLng = {lat: 37.78, lng: -122.44};
-  function initMap() {
-  	var map = new google.maps.Map(document.getElementById('map'), {
-  	  center: sfLatLng,
-  	  zoom: 2
-    });
-   	var marker = new google.maps.Marker({
-        position: sfLatLng,
-        map: map,
-        title: 'Hello World!'
-  	  });   // marker
-    };
-
-    google.maps.event.addDomListener(window, 'load', initMap);
-
 });  // doc on ready
+
+var sfLatLng = {lat: 37.78, lng: -122.44};
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: sfLatLng,
+    zoom: 2
+  });
+  var marker = new google.maps.Marker({
+      position: sfLatLng,
+      map: map,
+      title: 'Hello World!'
+    });   // marker
+  var newmarker = new google.maps.Marker({
+      position: {lat: 13.6183, lng: 121.0218},
+      map: map,
+    });
+  };
+
+  google.maps.event.addDomListener(window, 'load', initMap);
 
 
   function onSuccess(responseData) {
@@ -40,32 +43,25 @@ $(document).on("ready", function() {
       findLatLng.reverse(); // need turn this into object and feed into maps
       // console.log(findLatLng); // to test
 
-      var coordObj = {};
+      var coordObj = {}; // to turn it into object
         coordObj['lat'] = findLatLng[0];
         coordObj['lng'] = findLatLng[1];
-      console.log(coordObj); // test
+        console.log(coordObj); // test
+      })}
+      // newMap();
 
-})};
-
-
-
-//       var marker = new google.maps.Marker({
-//           position: findLatLng,
-//           title: 'Hello World!'
-//         });   // marker
-//
-//       var mapOptions = {
-//         zoom: 1,
-//         center: findLatLng
-//       };
-//
-//       marker.setMap();
-//
-//       google.maps.event.addDomListener(window, 'load', mapOptions);
-//     ;
-//
-
-
-
-
-// }
+      // function newMap() {
+      //       // var myLatlng = new google.maps.LatLng(findLatLng[0], findLatLng[1]); this might get rid of need to turn into object
+      //       // var myLatlng = coordObj;
+      //
+      //       // var map = new google.maps.Map(document.getElementById('map'), {
+      //       //           zoom: 2,
+      //       //           center: coordObj
+      //       //         });
+      //
+      //       var newmarker = new google.maps.Marker({
+      //                 position: coordObj,
+      //                 map: map,
+      //               });
+      //           newmarker.setMap();
+      //     }})};
