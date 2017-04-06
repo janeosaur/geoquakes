@@ -13,7 +13,7 @@ $(document).on("ready", function() {
   function initMap() {
   	var map = new google.maps.Map(document.getElementById('map'), {
   	  center: sfLatLng,
-  	  zoom: 8
+  	  zoom: 2
     });
    	var marker = new google.maps.Marker({
         position: sfLatLng,
@@ -37,31 +37,33 @@ $(document).on("ready", function() {
     	// console.log(findLatLng); // to test
 
       findLatLng.pop();
-      findLatLng.reverse(); // turn this into object and feed into maps
-      console.log(findLatLng); // to test
+      findLatLng.reverse(); // need turn this into object and feed into maps
+      // console.log(findLatLng); // to test
+
+      var coordObj = {};
+        coordObj['lat'] = findLatLng[0];
+        coordObj['lng'] = findLatLng[1];
+      console.log(coordObj); // test
 
 })};
 
 
-// greyed for now
 
-
-    //   var marker = new google.maps.Marker({
-    //       position: findLatLng,
-    //       map: map,
-    //       title: 'Hello World!'
-    //     });   // marker
-    //
-    //   var mapOptions = {
-    //     zoom: 4,
-    //     center: findLatLng
-    //   };
-    //
-    //   marker.setMap(map);
-    //
-    //   google.maps.event.addDomListener(window, 'load', mapOptions);
-    // })};
-
+//       var marker = new google.maps.Marker({
+//           position: findLatLng,
+//           title: 'Hello World!'
+//         });   // marker
+//
+//       var mapOptions = {
+//         zoom: 1,
+//         center: findLatLng
+//       };
+//
+//       marker.setMap();
+//
+//       google.maps.event.addDomListener(window, 'load', mapOptions);
+//     ;
+//
 
 
 
